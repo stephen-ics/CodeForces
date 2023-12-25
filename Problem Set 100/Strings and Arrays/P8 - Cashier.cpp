@@ -6,6 +6,16 @@
 
 using namespace std;
 
+bool checkCustomer(int customers[][2], int size, int currentTime) {
+    for(int i = 0; i < size; i++) {
+        if(customers[i][0] == currentTime) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 int main()
 {
     int n, l, a;
@@ -21,31 +31,29 @@ int main()
         customers[i][1] = li;
     }
 
-    for(int i = 0; i < n; i++) {
-        int currentTime = 0;
-        bool freeTime = true;
-        int count = 0;
+    bool hasCustomer;
+    int time = 0;
+    int count = 0;
+    int numBreaks = 0;
 
-        for(int j = 0; j < n; j++) {
-            if (currentTime == customers[j][0]) {
-                currentTime += customers[j][1];
+    for(int i = 0; i < l; i++) {
+        hasCustomer = checkCustomer(customers, n, time);
+
+        if(hasCustomer) {
+            time += customers[time][1];
+            count = 0;
+        }
+        else {
+            time++;
+            count++;
+            if(count >= a) {
+                numBreaks++;
                 count = 0;
-                break;
             }
         }
-
-        if(freeTime) {
-            count++;
-        }
-
-        if(count == a) {
-            cout << currentTime - 2 << " " << currentTime;
-        }
     }
 
-    for(int i = 0; i < n; i++) {
-        cout << customers[i][0] << " " << customers[i][1] << endl;
-    }
+    cout << numBreaks << endl;
 
     return 0;
 }
