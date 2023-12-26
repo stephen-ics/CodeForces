@@ -3,22 +3,22 @@
 //
 
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
 int main() {
-    int a;
+    long long a;
     cin >> a;
 
-    long smallestPerimeterDifference, smallestPerimeter = 10000000000000000;
+    long long smallestPerimeter = 10000000000000;
+    long long smallestPerimeterDifference = 10000000000000;
 
-    for(int i = 1; i <= a/2; i++) {
+    for(long long i = 1; i <= sqrt(a); i++) {;
         if(a % i == 0) {
-            int diff = (a / i) - i;
-            if (diff < 0) {
-                break;
-            }
-            else if(diff < smallestPerimeterDifference) {
+            long long diff = (a / i) - i;
+
+            if(diff < smallestPerimeterDifference) {
                 smallestPerimeterDifference = diff;
                 smallestPerimeter = 2 * ((a / i) + i);
             }
