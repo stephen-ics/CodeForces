@@ -16,8 +16,7 @@ bool checkCustomer(int customers[][2], int size, int currentTime) {
     return false;
 }
 
-int main()
-{
+int main() {
     int n, l, a;
     cin >> n >> l >> a;
 
