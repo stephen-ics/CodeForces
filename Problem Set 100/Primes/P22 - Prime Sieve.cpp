@@ -16,7 +16,7 @@ int main() {
 
     for(int i = 2; i <= sqrt(n); i++) {
         if(isPrime[i]) {
-            for(int j = 2*i; j <= n; j = j+ i) {
+            for(int j = 2*i; j <= n; j = j + i) {
                 isPrime[j] = false;
             }
         }

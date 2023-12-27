@@ -4,24 +4,9 @@
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 using namespace std;
-
-int countDivisors(int n) {
-    int count = 2; // the 2 divisors being 1 and itself
-
-    for(int i = 2; i <= sqrt(n); i++) {
-        if(n % i == 0) {
-            if(i == sqrt(n)) {
-                count++;
-            } else {
-                count += 2;
-            }
-        }
-    }
-
-    return count;
-}
 
 int main() {
     int n;
@@ -29,8 +14,16 @@ int main() {
 
     int sum = 1; // accounts for f(1)
 
-    for(int i = 2; i <= n; i++) { // this is an O(n * sqrt(n)) algorithm)
-        sum += countDivisors(i);
+    vector<int> numbers(n+1, 2);
+
+    for(int i = 2; i <= n; i++) {
+        for(int j = 2*i; j <= n; j = j + i) {
+            numbers[j]++;
+        }
+    }
+
+    for(int i = 2; i < n+1; i++) {
+        sum += numbers[i];
     }
 
     cout << sum;
