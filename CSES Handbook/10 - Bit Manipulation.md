@@ -69,3 +69,20 @@
 - For example, the formula `x | (1 << k)` sets the `kth` bit of `x` to one, the formula `x & ~(1<<k)` sets the `kth` bit of `x` to zero, and the formula `x ^ (1 << k)` inverts the kth bit of `x`
 - The formula `x & (x - 1)` sets the last one bit of `x` to zero, the formula `x & -x` sets all one bits to zero, and the formula `x | (x - 1)` inverts all bits after the one bit
 - A positive number `x` is **a power of two exactly when** `x & (x - 1) = 0`
+
+## Additional Functions
+- The g++ compiler provides the following functions for counting bits
+  - `__builtin__clz(x)`: the number of zeroes at the beginning of the number
+  - `__builtin__ctz(x)`: the number of zeroes at the end of a number
+  - `__builtin_popcount(x)`: the number of ones in the number
+  - `__builtin_parity(x)`: the parity (even or odd) of the number of ones
+  - The function can be used as follows
+  ```c++
+  int x = 5328 //00000000000000000001010011010000
+  cout << __builtin_clz(x) << "\n"; // 19
+  cout << __builtin_ctz(x) << "\n"; // 4
+  cout << __builtin_popcount(x) << "\n"; // 5
+  cout << __builtin_parity(x) << "\n"; // 1
+  ```
+  - While the above functions only support `int` numbers, there are also `long long` versions of the function available with the suffix `ll`
+
