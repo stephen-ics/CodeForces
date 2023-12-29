@@ -54,3 +54,18 @@
    x =  29 00000000000000000000000000011101
   ~x = -30 11111111111111111111111111100010
   ```
+  
+## Applications
+- A number of the form `1 << k` has a one bit in position `k` and all other bits are zero, so we can use such numbers to access single bits of numbers
+- The `kth` bit of a number is one exactly when x & (1 << k) is not zero
+- The following code prints the bit representation of an `int` number `x`
+  ```c++
+  for(int i = 31; i >= 0; i--) {
+    if(x&(1<<i)) cout << "1";
+    else cout << "0";
+  }
+  ```
+- It is possible to modify single bits of numbers using similar ideas
+- For example, the formula `x | (1 << k)` sets the `kth` bit of `x` to one, the formula `x & ~(1<<k)` sets the `kth` bit of `x` to zero, and the formula `x ^ (1 << k)` inverts the kth bit of `x`
+- The formula `x & (x - 1)` sets the last one bit of `x` to zero, the formula `x & -x` sets all one bits to zero, and the formula `x | (x - 1)` inverts all bits after the one bit
+- A positive number `x` is **a power of two exactly when** `x & (x - 1) = 0`
