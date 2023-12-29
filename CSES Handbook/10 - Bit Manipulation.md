@@ -1,0 +1,12 @@
+# Bit Representation
+- In programming, an n bit integer is internally stored as a binary number that consists of n bits
+- The C++ type int is a 32-bit type
+- The bit representation of a number is either `signed` or `unsigned`
+  - A `signed` representation allows for both negative and positive numbers, a signed variable of `n` bits can contain any integer between `-2^(n-1)` and `2^(n-1) -1`
+    - For example the int type in C++ is a signed type so an int variable can contain any integer between `-2^31` and `2^31 - 1`
+      - The first bit a signed representation is the sign of the number (0 for positive, 1 for negative), `twos complement form` is used
+  - A `unsigned` representation only positive numbers can be used, so the upper bound for the values is larger, an unsigned integer variable can contain any integer between `0` and `2^n - 1`
+  - There is a connection between the representations: a signed number `-x` equals an unsigned number `2^n - x`
+  - If a number is larger than the upper bound of the bit representation, the number will overflow
+    - In a signed representation the next number after `2^(n-1) - 1` is `-2^(n-1)`
+    - In an unsigned representation the next number after `2^n - 1` is `0`
