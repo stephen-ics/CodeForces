@@ -145,3 +145,32 @@
     // process subset b
   } while(b=(b-x)&x);
   ```
+
+## Bit Optimizations
+- Many algorithms can be optimized using bit operations
+- Such optimizations do not change the time complexity of the algorithm, but they may have a large impact on the actual running time of the code
+- In this section we discuss examples of such situations
+
+### Hamming Distances
+- The **Hamming distance** `hamming(a, b` between two strings `a` and `b` of equal length is the number of positions where the strings differ, for example `hamming(01101, 11001) = 2`
+- Consider the following problem: Given a list of `n` bit strings, each of length `k`, calculate the minimum Hamming distance between two strings in the list
+- A straightforward way to solve the problem is to go through all pairs of strings and calculate their Hamming distances, which yields an `O(n^2 * k)` time algorithm
+- The following function can be used to calculate distances
+  ```c++
+  int hamming(string a, string b) {
+    int d = 0;
+    for(int i = 0; i < k; i++) {
+        if(a[i] != b[i]) d++;
+    }
+  
+    return d;
+  }
+  ```
+  - However, if `k` is small, we can optimize the code by storing the bit strings as integers and calculating the Hamming distance using bit operations, in particular, if `k <= 32` we can just store the strings as `int` values and use the following function to calculate distances
+  ```c++
+  int hamming(int a, int b) {
+    return __builtin_popcount(a^b);
+  } 
+  ```
+  - In the above function, the `xor` operation constructs a bit string that has one bits in positions where `a` and `b` differ, then the number of bits is calculated using the `__builtin_popcount` function
+  - A list of 10000 random bit strings of length 30 were used on each approach, the first method took 13.5 seconds while the second only took 0.5 seconds, the optimized code is almost 30x faster than the original code
