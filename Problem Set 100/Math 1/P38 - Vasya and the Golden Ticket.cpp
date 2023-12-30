@@ -80,7 +80,7 @@ int main() {
         bool golden = false;
 
         for(int i = 0; i < size-1; i++) {
-            for(int j = 1; j < size; j++) {
+            for(int j = i; j < size; j++) {
                 int sum = checkGolden(sums, i, j);
                 if(sum != 10000000) {
                     if(checkChain(sums, j, sum, size-1)) {
