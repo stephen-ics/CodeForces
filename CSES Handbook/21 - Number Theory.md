@@ -22,4 +22,13 @@
   - For example, the factors of `84` produce the pairs `1 * 84, 2 * 42, 3 * 28, etc`, therefore the product of the factors will be `84^6 = 351298031616`
 - A number `n` is called a **perfect number** if `n = sum of factors(n) - n`, or in other words `n` equals the sum of its factors between `1` and `n-1`
   - For example, 28 is a perfect number because `28 = 1 + 2 + 4 + 7 + 14`
-  
+
+### Number of Primes
+- It is easy to show that there is an infinite number of primes, if the number of primes would be finite, we could construct a set P where `P = {p1, p2, ..., pn}` that would contain all the primes
+- However, using P, we could form a new prime `(p1 * p2 * ... * pn) + 1`, that number will be larger than all elements in `P` and a prime, this is a contradiction and the number of primes has to be infinite
+
+### Density of Primes
+- The density of primes means how often there are primes among the numbers
+- Let `π(n)` denote the number of primes between `1` and `n`, for example `π(10) = 4`, because there are 4 primes between 1 and 10: 2, 3, 5, and 7
+- It is possible to show that `π(n) ≈ n / ln(n)`, which means that primes are quite frequent
+  - For example, the number of primes between 1 and 10^6 is pi(10^6) = 78498, and 10^6 / ln(10^6) = 72382
