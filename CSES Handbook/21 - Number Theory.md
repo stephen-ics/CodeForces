@@ -72,3 +72,21 @@
     ```
     - Note that each prime factor appears in the vector as many times as it divides the number, for example `24 = 2^3 * 3^1`, so the result of the function is `[2, 2, 2, 3]`, this function works because a prime divisor will always be found first before a composite divisor as the composite divisor will be divisible by some prime
 
+### Sieve of Eratosthenes
+- The **Sieve of Eratosthenes** is a preprocessing algorithm that builds an array using which we can check if a given number `n` is prime, and if it is not, find one prime factor of the number
+- The algorithm builds an array `sieve` whose positions `2, 3, ..., n` are used
+- The value `sieve[k] = 0` means that `k` is prime, and the value `sieve[k] != 0` means that `k` is not a prime and one of its prime factors is `sieve[k]`
+- The algorithm iterates through the numbers `2` to `n` one by one, and when a new prime `x` is found, the algorithm records that the multiples of `x` are not primes, because the number `x` divides them
+- The following code implements the Sieve of Eratosthenes, the code assumes that each element is initially 0
+    ```c++
+    for(int x = 2; x <= n; x++) {
+        if(sieve[x]) continue;
+        for(int u = 2*x; u M= n; u += x) {
+            sieve[u] = x;
+        }
+    }
+    ```
+    - The inner loop of the algorithm is executed `n/x` times for each value `x`, thus an upper bound for the running time of the algorithm is the harmonic sum `n/2 + n/3 + n/4 + ... + n/n = O(n * log(n))`
+    - In fact, the algorithm is more efficient because the inner loop will be executed only if the number `x` is prime, (here, 0 is interpreted as false and all other numbers are interpreted as true)
+    - It can be shown that the running time of the algorithm is only  O(n * log(log(n))), a complexity very close to O(n)
+
