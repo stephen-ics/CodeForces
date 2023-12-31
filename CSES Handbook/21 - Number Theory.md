@@ -90,3 +90,20 @@
     - In fact, the algorithm is more efficient because the inner loop will be executed only if the number `x` is prime, (here, 0 is interpreted as false and all other numbers are interpreted as true)
     - It can be shown that the running time of the algorithm is only  O(n * log(log(n))), a complexity very close to O(n)
 
+### Euclid's Algorithm
+- The **greatest common divisor** of numbers `a` and `b`, `gcd(a, b)`, is the greatest number that divides both `a` and `b`, and the **least common multiple** of `a` and `b`, `lcm(a, b)` is the smallest number that is divisible by both `a` and `b`
+  - For example, `ggcd(24, 36) = 12` and `lcm(24, 36) = 72`
+- The greatest common divisor and the least common multiple are connected as follows: `lcm(a, b) = a * b / gcd(a, b)`
+- **Euclid's Algorithm** provides an efficient way to find the greatest common divisor of two numbers, the algorithm is based on the following formula
+  - if `b = 0`, then `gcd(a, b) = a`, else `gcd(a, b) = gcd(b, a mod b`
+  - For example, `gcd(24, 36) = gcd(36, 24) = gcd(24, 12) = gcd(12, 0) = 12`
+- The algorithm can be implemented as follows
+    ```c++
+    int gcd(int a, int b) {
+        if (b == 0) return a;
+        return gcd(b, a%b);
+    }
+    ```
+- It can be shown that Euclid's algorithm works in `O(log(n))` time, where `n = min(a, b)`
+- The worst case for the algorithm is the case when `a` and `b` are consecutive Fibonacci numbers
+  - For example: `gcd(13, 8) = gcd(8, 5) = gcd(5, 3) = gcd(3, 2) = gcd(2, 1) = gcd(1, 0) = 1`
