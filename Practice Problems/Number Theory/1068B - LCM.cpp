@@ -4,43 +4,26 @@
 
 #include <iostream>
 #include <unordered_map>
+#include <vector>
 
 using namespace std;
 
-int gcd(int a, int b) {
-    if(b == 0) {
-        return a;
-    } else {
-        return gcd(b, a % b);
-    }
-}
-
 int main() {
-    int b;
+    long long b;
     cin >> b;
 
-    unordered_map<int, int> exists;
+    vector<long long> divisors;
 
-    int count = 0;
-
-    for(int i = 1; i <= b; i++) {
-        int val = gcd(i, b);
-
-        int ans = b / val;
-
-
-        if(!exists[ans]) {
-            count++;
-            exists[ans] = 1;
+    for(long long i = 1; i * i <= b; i++) {
+        if(i * i == b) {
+            divisors.push_back(i);
+        }  else if(b % i == 0) {
+            divisors.push_back(i);
+            divisors.push_back(b / i);
         }
     }
 
-    cout << count;
-
-
-
-
-
+    cout << divisors.size();
 
     return 0;
 }
