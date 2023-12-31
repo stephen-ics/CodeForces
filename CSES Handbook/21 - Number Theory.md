@@ -32,3 +32,43 @@
 - Let `π(n)` denote the number of primes between `1` and `n`, for example `π(10) = 4`, because there are 4 primes between 1 and 10: 2, 3, 5, and 7
 - It is possible to show that `π(n) ≈ n / ln(n)`, which means that primes are quite frequent
   - For example, the number of primes between 1 and 10^6 is pi(10^6) = 78498, and 10^6 / ln(10^6) = 72382
+
+### Conjectures
+- There are many conjectures involving primes, most people think that these conjectures are true, however nobody has been able to prove them
+- For example, the following conjectures are famous
+  - **Goldbach's Conjecture**: Each even integer `n > 2` can be represented as a sum `n = a + b` where `a` and `b` are primes
+  - **Twin Prime Conjecture**: There is an infinite number of pairs of the form `{p, p + 2}`, where both `p` and `p + 2` are primes
+  - **Legendre's Conjecture**: There is always a prime between numbers `n^2` and `(n + 1)^2`, where `n` is any positive integer
+
+### Basic Algorithms
+- If a number `n` is not prime, it can be represented as a product `a * b`, where `a <= sqrt(n)` or `b <= sqrt(n)`, so it certainly has a factor between `2` and `floor(sqrt(n))`
+- Using this observation we can both test if a number is a prime and find the prime factorizations of a number in `O(sqrt(n))` time
+- The following function `prime` checks if the given number `n` is prime, the function attempts to divide `n` by all numbers between `2` and `floor(sqrt(n))`, and if none of them divides `n`, then `n` is a prime
+    ```c++
+    bool prime(int n) {
+        if(n < 2) return false;
+        for(int x = 2; x*x; <= n; x++) {
+            if(n % x == 0) return false
+        } 
+        
+        return true;
+    }
+    ```
+- The following function `factors` constructs a vector that contains the prime factorizations of `n`, the function divides by `n` by its prime factors, and adds them to the vector
+- The process ends when the remaining number `n` has no factors between `2` and `floor(sqrt(n))`, if `n > 1`, it is prime and the last factor
+    ```c++
+    vector<int> factors(int n) {
+        vector<int> f;
+        for(int x = 2; x * x <= n; x++) {
+            while(n % x == 0) {
+                f.push_back(x);
+                n /= x;
+            } 
+        } 
+  
+        if(n > 1) f.push_back(n);
+        return f;
+    }
+    ```
+    - Note that each prime factor appears in the vector as many times as it divides the number, for example `24 = 2^3 * 3^1`, so the result of the function is `[2, 2, 2, 3]`, this function works because a prime divisor will always be found first before a composite divisor as the composite divisor will be divisible by some prime
+
