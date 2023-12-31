@@ -26,7 +26,7 @@ int main() {
         int leastLcm = 1000000000;
         int least_a, least_b;
 
-        for(int j = 1; j < n; j++) {
+        for(int j = 1; j <= n/2; j++) {
             int a = j;
             int b = n-j;
 
