@@ -11,52 +11,25 @@ int main() {
     int n;
     cin >> n;
 
-    if(n == 7) {
-        cout << "ROYGBIV";
-    } else if(n == 8) {
-        cout << "ROYGBIVG";
-    } else if(n == 9) {
-        cout << "ROYGBIVGB";
-    } else if(n == 10) {
-        cout << "ROYGBIVGBI";
-    } else if(n == 11) {
-        cout << "ROYGBIVGBIV";
-    } else {
-        int n2 = n;
+    int num = 1;
+    unordered_map<int, char> flags;
 
-        n2 -= 7;
-        cout << "ROYGBIV";
+    flags[1] = 'R';
+    flags[2] = 'O';
+    flags[3] = 'Y';
+    flags[4] = 'G';
 
-        int num = 1;
-        unordered_map<int, char> flags;
+    while(n > 3) {
+        cout << flags[num];
+        num++;
+        n--;
 
-        flags[1] = 'R';
-        flags[2] = 'O';
-        flags[3] = 'Y';
-        flags[4] = 'G';
-
-        while(n2 > 4) {
-            cout << flags[num];
-            num++;
-            n2--;
-
-            if(num > 4) {
-                num = 1;
-            }
-        }
-
-        if(num == 1) {
-            cout << "BOIV";
-
-        } else if(num == 2) {
-            cout << "BOIV";
-
-        } else if(num == 3) {
-            cout << "YBIV";
-        } else {
-            cout << "VIBG";
+        if(num > 4) {
+            num = 1;
         }
     }
+
+    cout << "BIV";
 
     return 0;
 }
